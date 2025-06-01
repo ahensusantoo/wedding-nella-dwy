@@ -202,7 +202,7 @@
                                         <p>Kami akan menikah 03 Juli 2025</p>
                                         <ul>
                                             <li>Kamis, 3 Juli, 2025 <br>
-                                                08:00 – Selesai</li>
+                                                14.00-20.00</li>
                                             <li>Melona</li>
                                             <li>Phone : 0823-5144-1669</li>
         
@@ -609,17 +609,18 @@
                 }
 
                 /* Styling untuk tombol kecil */
-                #copyButton {
+                .copyButton {
                     font-size: 12px !important; /* Ukuran font lebih kecil */
                     padding: 2px 4px !important; /* Padding lebih kecil */
                     border-radius: 5px !important; /* Sudut yang lebih halus */
                     margin-top: 0 !important; /* Tidak ada jarak atas */
                     display: inline-block !important; /* Tombol inline agar pas di samping teks */
                     background-color: #91a9bd;
+                    margin-bottom: 17px;
                 }
 
                 /* Button Hover Effect */
-                #copyButton:hover {
+                .copyButton:hover {
                     background-color: #91a9bd !important;
                 }
             </style>
@@ -639,14 +640,22 @@
                             Dan jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.</p>
                             
                             <!-- Gambar di-center -->
-                            <div class="image-center" style="text-align: center; margin-bottom: 20px;">
+                            <!-- <div class="image-center" style="text-align: center; margin-bottom: 20px;">
                                 <img src="assets/images/cart/logo_bri.png" alt="Image" style="max-width: 100%; height: auto;"/>
-                            </div>
+                            </div> -->
 
                             <!-- Informasi rekening dan tombol Copy di samping -->
                             <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-                                <p>NO Rekening : 116201003866509</p>
-                                <button type="button" class="btn-small" id="copyButton">Copy</button><br>
+                            <p>NO Rekening : 116201003866509 ( BRI )</p>
+                            <button type="button" class="btn-small copyButton" data-norek="116201003866509">Copy</button><br>
+                            </div>
+                            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                            <p>NO Rekening : 1010010028866 ( MANDIRI )</p>
+                            <button type="button" class="btn-small copyButton" data-norek="1010010028866">Copy</button><br>
+                            </div>
+                            <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                            <p>NO Rekening : 4521650741 ( KALBAR )</p>
+                            <button type="button" class="btn-small copyButton" data-norek="4521650741">Copy</button><br>
                             </div>
                                 <p>A/N : Juniawati Atri</p>
                         </div>
@@ -754,7 +763,7 @@
                                 <h2>Nela & Dwy</h2>
                                 <p>Kami akan menikah 3 Juli 2025</p>
                                 <ul>
-                                    <li>Kamis, 3 Juli 2025 <br> 08:00 – Selesai</li>
+                                    <li>Kamis, 3 Juli 2025 <br> 14.00-20.00</li>
                                     <li>Kepada : </li>
                                     <li id="kepada"></li>
                                     <li><a href="#" id="btn_buka_undangan" class="open-modal-btn">Buka Undangan</a></li>
@@ -869,18 +878,18 @@
     });
 
 
-    $("#copyButton").click(function() {
-        var copyText = "116201003866509";  // Nomor rekening yang ingin disalin
+    $(".copyButton").click(function() {
+        var copyText = $(this).data("norek");  // Ambil nomor rekening dari atribut data-norek
+        
         var textArea = $("<textarea>");
         $("body").append(textArea);
-        textArea.val(copyText).select();  // Pilih teks
-        document.execCommand("copy");  // Salin ke clipboard
-        textArea.remove();  // Hapus elemen textarea setelah disalin
-        
+        textArea.val(copyText).select();
+        document.execCommand("copy");
+        textArea.remove();
+
         // Tampilkan toast notification
         var toast = $("#toast");
         toast.fadeIn(400).delay(1500).fadeOut(400);
     });
-
 
 </script>
