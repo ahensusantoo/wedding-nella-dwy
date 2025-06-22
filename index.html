@@ -809,9 +809,9 @@
                             <div class="wpo-event-text">
                                 <h5>THE WEDDING OF</h5>
                                 <h2>Nela & Dwy</h2>
-                                <ul>
+                                <ul style="margin-top: 10px;">
                                     <li>Kamis, 3 Juli 2025</li>
-                                    <li>Kepada Yth </li>
+                                    <li style="margin-top: 20px;">Kepada Yth </li>
                                     <li>Bapak/Ibu/Saudari </li>
                                     <li id="kepada"></li>
                                     <li>Di Tempat </li>
@@ -912,17 +912,24 @@
 
     // Jika tombol play/pause (icon) diklik, kontrol lagu dan ikon
     $('.music').click(function(e) {
-        e.preventDefault();  // Menghentikan aksi default link
-        
-        const audio = $('#audio')[0];  // Ambil elemen audio
-        const icon = $('#icon-play-pause');  // Ambil ikon play/pause
+        e.preventDefault(); // Mencegah aksi default
+
+        const audio = $('#audio')[0]; // Ambil elemen audio
+        const icon = $('#icon-play-pause'); // Ambil ikon
 
         if (audio.paused) {
-            audio.play();  // Putar lagu
-            icon.removeClass('ti-control-play').addClass('ti-control-pause');  // Ganti ikon ke pause
+            // Set src dengan timestamp untuk menghindari cache
+            const src = 'assets/music/music.mp3?v=' + new Date().getTime();
+            $('#audio').attr('src', src);
+
+            audio.load();             // Muat ulang audio
+            audio.currentTime = 0;    // Mulai dari awal
+            audio.play();             // Putar audio
+
+            icon.removeClass('ti-control-play').addClass('ti-control-pause');
         } else {
-            audio.pause();  // Stop lagu
-            icon.removeClass('ti-control-pause').addClass('ti-control-play');  // Ganti ikon ke play
+            audio.pause(); // Hentikan audio
+            icon.removeClass('ti-control-pause').addClass('ti-control-play');
         }
     });
 
